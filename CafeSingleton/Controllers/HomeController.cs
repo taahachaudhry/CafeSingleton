@@ -58,5 +58,12 @@ namespace CafeSingleton.Controllers
             }
             return RedirectToAction("Details", new { id = cafe.ID });
         }
+        public ActionResult Delete(int id)
+        {
+            var target = cafes.Where(x => x.ID == id).FirstOrDefault();
+            cafes.Remove(target);
+
+            return RedirectToAction("Index");
+        }
     }
 }
