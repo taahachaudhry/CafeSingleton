@@ -1,9 +1,19 @@
 ﻿@model CafeSingleton.Models.HomeIndexVM
 <br /><div class="panel panel-default">
     <div class="panel-body">
-        <div class="col-md-11 offset-1" style="text-align:center">
+        <div style="text-align:center">
             <h2>@Model.FeaturedCafe.CafeName</h2>
             <h4>- @Model.FeaturedCafe.City</h4>
         </div>
     </div>
 </div>
+<table class="table table-condensed table-striped table-responsive table-hover">
+    <tr><th>Name</th><th>City</th></tr>
+    @foreach (var c in Model.Cafes)
+    {
+        <tr onclick="location.href='Home/Details/@c.ID'">
+            <td>@c.CafeName</td>
+            <td>@c.City</td>
+        </tr>
+    }
+</table>

@@ -19,11 +19,11 @@ namespace CafeSingleton.Controllers
             return View(bucket);
         }
 
-        public ActionResult About()
+        public ActionResult Details(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            Cafe cafe = cafes.Where(x => x.ID == id).FirstOrDefault();
 
-            return View();
+            return View(cafe);
         }
 
         public ActionResult Contact()
