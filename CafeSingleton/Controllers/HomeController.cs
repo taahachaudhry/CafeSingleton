@@ -36,15 +36,27 @@ namespace CafeSingleton.Controllers
             Cafe cafe = new Cafe();
             cafe.CafeName = name;
             cafe.City = city;
+            cafe.ID = Cafe.NextID++;
             cafes.Add(cafe);
 
             return RedirectToAction("Index");
         }
-        public ActionResult Contact()
+        public ActionResult Edit(int id)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Cafe cafe = cafes.Where(x => x.ID == id).FirstOrDefault();
+            return View(cafe);
+        }
+        [HttpPost]
+        public ActionResult Edit(Cafe cafe)
+        {
+            var c = cafes.Where(x => x.ID == cafe.ID).FirstOrDefault();
+            if (c.GetType().ToString() == "CafeSingleton.Models.Cafe")
+            {
+                Cafe oldCafe = (Cafe)c;
+                oldCafe.CafeName = cafe.CafeName;
+                oldCafe.City = cafe.City;
+            }
+            return RedirectToAction("Details", new { id = cafe.ID });
         }
     }
 }

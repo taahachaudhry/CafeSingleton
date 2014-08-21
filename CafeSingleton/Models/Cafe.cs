@@ -7,7 +7,7 @@ namespace CafeSingleton.Models
 {
     public class Cafe
     {
-        protected static int NextID = 0;
+        public static int NextID = 0;
         public int ID { get; set; }
         public string CafeName { get; set; }
         public string City { get; set; }
