@@ -9,13 +9,13 @@ namespace CafeSingleton.Models
     {
         protected static int NextID = 0;
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string CafeName { get; set; }
         public string City { get; set; }
 
-        public Cafe(int id, string name, string city)
+        public Cafe(int id, string cafename, string city)
         {
-            ID = id;
-            Name = name;
+            ID = NextID++;
+            CafeName = cafename;
             City = city;
         }
         public Cafe()
