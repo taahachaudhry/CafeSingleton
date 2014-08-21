@@ -12,7 +12,7 @@ namespace CafeSingleton.Models
         public string CafeName { get; set; }
         public string City { get; set; }
 
-        public Cafe(int id, string cafename, string city)
+        public Cafe(string cafename, string city)
         {
             ID = NextID++;
             CafeName = cafename;

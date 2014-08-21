@@ -14,7 +14,7 @@ namespace CafeSingleton.Models
         protected static int NextReviewID = 0;
         public int ReviewID { get; set; }
 
-        public Review(int id, string name, string message, Rating rating, int ReviewID)
+        public Review(string name, string message, Rating rating)
         {
             ID = NextID++;
             Name = name;
