@@ -25,7 +25,21 @@ namespace CafeSingleton.Controllers
 
             return View(cafe);
         }
+        [HttpGet]
+        public ActionResult AddCafe()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddCafe(string name, string city)
+        {
+            Cafe cafe = new Cafe();
+            cafe.CafeName = name;
+            cafe.City = city;
+            cafes.Add(cafe);
 
+            return RedirectToAction("Index");
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
