@@ -166,6 +166,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cafe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
