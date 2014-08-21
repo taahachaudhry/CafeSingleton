@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CafeSingleton.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,14 @@ namespace CafeSingleton.Controllers
 {
     public class HomeController : Controller
     {
+        List<Cafe> cafes = Singleton.Instance.Cafes;
         public ActionResult Index()
         {
-            return View();
+            int RandomNum = new Random().Next(cafes.Count());
+            HomeIndexVM bucket = new HomeIndexVM();
+            bucket.Cafes = cafes;
+            bucket.FeaturedCafe = bucket.Cafes[RandomNum];
+            return View(bucket);
         }
 
         public ActionResult About()

@@ -7,6 +7,7 @@ namespace CafeSingleton.Models
 {
     public class HomeIndexVM
     {
+        public Cafe FeaturedCafe { get; set; }
         public List<Cafe> Cafes { get; set; }
     }
 }
