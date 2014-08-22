@@ -9,12 +9,13 @@
     </div>
 </div>
 <table class="table table-condensed table-striped table-responsive table-hover">
-    <tr><th>Name</th><th>City</th></tr>
+    <tr><th>Name</th><th>City</th><th>Average Rating</th></tr>
     @foreach (var c in Model.Cafes)
     {
-        <tr onclick="location.href='Home/Details/@c.ID'">
+        <tr onclick="location.href='/Home/Details/@c.ID'">
             <td>@c.CafeName</td>
             <td>@c.City</td>
+            <td>@c.AvgRating</td>
         </tr>
     }
 </table>

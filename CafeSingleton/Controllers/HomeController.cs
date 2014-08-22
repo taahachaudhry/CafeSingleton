@@ -17,6 +17,13 @@ namespace CafeSingleton.Controllers
             HomeIndexVM bucket = new HomeIndexVM();
             bucket.Cafes = cafes;
             bucket.FeaturedCafe = bucket.Cafes[RandomNum];
+            foreach (var x in bucket.Cafes)
+            {
+                bucket.Reviews = reviews.Where(y => y.CafeID == x.ID).ToList();
+                x.AvgRating = bucket.Reviews[0].AverageRating(bucket.Reviews);
+
+            }
+            bucket.Cafes = bucket.Cafes.OrderByDescending(x => x.AvgRating).ToList();
             return View(bucket);
         }
 
