@@ -8,14 +8,12 @@
 
             <a class="btn center-block btn-primary" href="/Home/Edit/@Model.Cafes[0].ID">Edit</a>
             <a class="btn center-block btn-success" href="/Home/AddReview/@Model.Cafes[0].ID">Add Review</a>
-            @for (var i=0; i<@Model.Reviews.Count; i++){
-                @Model.Reviews[i].Rating
-            }
-            <h3>Average Rating:</h3>
+            <h3>Average Rating: @Model.Reviews[0].AverageRating(@Model.Reviews)</h3>
             <h2>Reviews:</h2>
             @foreach (var r in @Model.Reviews)
             {
                 <h3>Rating: @r.Rating out of 5</h3><h3>"@r.Message"</h3><h4>- @r.Name</h4>
+                
                 <form method="post" action="/Home/DeleteReview/@r.ReviewID">
                     <input type="submit" value="Delete" class="btn center-block btn-danger" /><br />
                 </form>

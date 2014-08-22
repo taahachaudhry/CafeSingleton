@@ -14,6 +14,17 @@ namespace CafeSingleton.Models
         public static int NextReviewID = 0;
         public int ReviewID { get; set; }
         public int CafeID { get; set; }
+        public double AverageRating(List<Review> reviews)
+        {
+            int counter = 0;
+            int r = 0;
+            for (var i=0; i<reviews.Count; i++){
+                r += (int)reviews[i].Rating;
+                counter++;
+            }
+            double avg = r/counter;
+            return avg;
+        }
         public Review(string name, string message, Rating rating, int cafeid)
         {
             Name = name;
