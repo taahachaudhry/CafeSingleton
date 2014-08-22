@@ -34,13 +34,14 @@ namespace CafeSingleton.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddReview(string name, string message, Rating rating)
+        public ActionResult AddReview(string name, string message, Rating rating, int cafeid)
         {
             Review review = new Review();
             review.Name = name;
             review.Message = message;
             review.Rating = rating;
             review.ReviewID = Review.NextReviewID++;
+            review.CafeID = cafeid;
             reviews.Add(review);
 
             return RedirectToAction("Index");
@@ -82,16 +83,6 @@ namespace CafeSingleton.Controllers
         {
             var target = cafes.Where(x => x.ID == id).FirstOrDefault();
             cafes.Remove(target);
-
-            return RedirectToAction("Index");
-        }
-        public ActionResult AddReview(string name, string message, Rating rating, int id)
-        {
-            Review review = new Review();
-            review.Name = name;
-            review.Message = message;
-            review.Rating = rating;
-            reviews.Add(review);
 
             return RedirectToAction("Index");
         }
