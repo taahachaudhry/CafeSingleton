@@ -93,7 +93,7 @@ namespace CafeSingleton.Controllers
             var target = reviews.Where(x => x.ReviewID == id).FirstOrDefault();
             reviews.Remove(target);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = id });
         }
     }
 }
