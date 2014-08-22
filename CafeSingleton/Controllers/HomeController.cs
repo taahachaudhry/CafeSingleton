@@ -10,6 +10,7 @@ namespace CafeSingleton.Controllers
     public class HomeController : Controller
     {
         List<Cafe> cafes = Singleton.Instance.Cafes;
+        List<Review> reviews = Singleton.Instance.Reviews;
         public ActionResult Index()
         {
             int RandomNum = new Random().Next(cafes.Count());
@@ -21,9 +22,28 @@ namespace CafeSingleton.Controllers
 
         public ActionResult Details(int id)
         {
-            Cafe cafe = cafes.Where(x => x.ID == id).FirstOrDefault();
+            HomeIndexVM bucket = new HomeIndexVM();
+            bucket.Cafes.Add(cafes.Where(x => x.ID == id).FirstOrDefault());
+            bucket.Reviews = reviews.Where(x => x.CafeID == id).ToList();
 
-            return View(cafe);
+            return View(bucket);
+        }
+        [HttpGet]
+        public ActionResult AddReview()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddReview(string name, string message, Rating rating)
+        {
+            Review review = new Review();
+            review.Name = name;
+            review.Message = message;
+            review.Rating = rating;
+            review.ReviewID = Review.NextReviewID++;
+            reviews.Add(review);
+
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult AddCafe()
@@ -62,6 +82,16 @@ namespace CafeSingleton.Controllers
         {
             var target = cafes.Where(x => x.ID == id).FirstOrDefault();
             cafes.Remove(target);
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult AddReview(string name, string message, Rating rating, int id)
+        {
+            Review review = new Review();
+            review.Name = name;
+            review.Message = message;
+            review.Rating = rating;
+            reviews.Add(review);
 
             return RedirectToAction("Index");
         }
