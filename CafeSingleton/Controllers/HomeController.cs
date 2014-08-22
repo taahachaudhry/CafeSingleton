@@ -86,5 +86,13 @@ namespace CafeSingleton.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult DeleteReview(int reviewid)
+        {
+            var target = reviews.Where(x => x.ReviewID == reviewid).FirstOrDefault();
+            reviews.Remove(target);
+
+            return RedirectToAction("Index");
+        }
     }
 }
