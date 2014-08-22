@@ -29,9 +29,10 @@ namespace CafeSingleton.Controllers
             return View(bucket);
         }
         [HttpGet]
-        public ActionResult AddReview()
+        public ActionResult AddReview(int id)
         {
-            return View();
+            var cafe = cafes.Where(x => x.ID == id).FirstOrDefault();
+            return View(cafe);
         }
         [HttpPost]
         public ActionResult AddReview(string name, string message, Rating rating, int cafeid)
@@ -44,7 +45,7 @@ namespace CafeSingleton.Controllers
             review.CafeID = cafeid;
             reviews.Add(review);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = cafeid });
         }
         [HttpGet]
         public ActionResult AddCafe()
@@ -83,6 +84,14 @@ namespace CafeSingleton.Controllers
         {
             var target = cafes.Where(x => x.ID == id).FirstOrDefault();
             cafes.Remove(target);
+
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteReview(int reviewid)
+        {
+            var target = reviews.Where(x => x.ReviewID == reviewid).FirstOrDefault();
+            reviews.Remove(target);
 
             return RedirectToAction("Index");
         }
